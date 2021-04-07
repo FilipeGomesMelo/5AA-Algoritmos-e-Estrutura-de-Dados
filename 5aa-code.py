@@ -57,21 +57,21 @@ def main():
         bubbleup(heap, vertices[source], distances, vertices)
         while len(heap) > 0:
             u = extract_min(heap, len(heap)-1, distances, vertices)
-            if u == target:
-                return (distances[u], previous)
-            elif distances[u] == sys.maxsize:
+            if distances[u] == sys.maxsize:
                 return -1
+            elif u == target:
+                return (distances[u], previous)
             for v in dicio_cidades[u].keys():
                 weight = dicio_cidades[u][v]
                 if distances[v] > distances[u] + weight:
                     distances[v] = distances[u] + weight
                     previous[v] = u
                     bubbleup(heap, vertices[v], distances, vertices)
+        return -1
 
     dicio_cidades = {}
-    # nomes = []
-    # mapa = []
-    # aux = 0
+
+    print('Informe todos os trajetos no formato origem;destino;distancia\ndigite FIM quanto tiver terminado de informar todos trajetos')
 
     while True:
         entrada = input()
@@ -84,8 +84,6 @@ def main():
         cidade1 = entrada[0]
         cidade2 = entrada[1]
 
-        # print(cidade1,cidade2)
-
         if cidade1 not in dicio_cidades:
             dicio_cidades[cidade1] = {}
         if cidade2 not in dicio_cidades:
@@ -94,11 +92,13 @@ def main():
 
         dicio_cidades[cidade1][cidade2] = float(entrada[2])
 
-    for key in dicio_cidades.keys():
-        print(key)
-        for key2 in dicio_cidades[key].keys():
-            print('\t', key2, dicio_cidades[key][key2])
+    # for key in dicio_cidades.keys():
+    #     print(key)
+    #     for key2 in dicio_cidades[key].keys():
+    #         print('\t', key2, dicio_cidades[key][key2])
     
+    print('\nFaca suas consultas com o formato origem;destino\ndigite FIM quanto tiver terminado de fazer todas consultas\n')
+
     while True:
         entrada = input()
 
@@ -113,23 +113,22 @@ def main():
         saida = dijkstra(source, target)
 
         if saida == -1:
-            print('oops deu errado')
+            print('Nao existe caminho de {} para {}'.format(source, target))
         else:
             d = saida[0]
             p = saida[1]
+            
+            print('O menor caminho de {} para {} tem distancia {}:'.format(source, target, d))
 
-            print(d)
+            aux = target
 
-            aux = p[target]
-
-            print(target, end = ' ')
+            result = []
 
             while aux != None:
-                print(aux, end=' ')
+                result.append(aux)
                 aux = p[aux]
 
-    # d = dijkstra(t, s, n, mapa)
-    # print(d)
+            print('->'.join(result[::-1]))
 
 if __name__ == '__main__':
     main()
