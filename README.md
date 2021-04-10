@@ -15,7 +15,9 @@ random generated tests => inputN.txt
 
 brute force results => BoutputN.txt
 
-our results => 5output.txt
+database adjacence list => output.txt
+
+results for 'GRAVATA' to 'SAO LOURENCO' with adjacence list => test_out.txt
 
 get all cities names => count_cidades.py
 
