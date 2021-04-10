@@ -18,3 +18,5 @@ brute force results => BoutputN.txt
 our results => 5output.txt
 
 get all cities names => count_cidades.py
+
+all cities names => cidades.txt
