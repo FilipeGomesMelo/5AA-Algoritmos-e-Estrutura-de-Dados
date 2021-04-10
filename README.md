@@ -5,7 +5,7 @@ data base => all.txt
 
 algorithm => 5aa-code.py
 
-testes cases => testes folder, hand_made_tests folder
+test cases => testes folder, hand_made_tests folder
 
 test case generator => generator.py
 
